@@ -28,14 +28,14 @@ public class MenuController {
 		
 		model.addAttribute("menuList", menuService.findAll());
 		
-		return "/menu-list";
+		return "menu-list";
 		
 	}
 	
 	@GetMapping("/menu-edit")
 	public String createMenuEditForm(Menu menu) {
 			
-		return "/menu-edit";
+		return "menu-edit";
 		
 	}
 	
@@ -44,7 +44,7 @@ public class MenuController {
 						
 		model.addAttribute("menu", menuService.findById(menuId));
 		
-		return "/menu-edit";
+		return "menu-edit";
 		
 	}
 	
@@ -71,7 +71,7 @@ public class MenuController {
 				
 		model.addAttribute("shoppingList", menuService.getShoppingListByMenuId(menuId));
 		
-		return "/shopping-list";
+		return "shopping-list";
 		
 	}
 	
