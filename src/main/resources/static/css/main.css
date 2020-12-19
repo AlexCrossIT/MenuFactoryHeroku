@@ -1,0 +1,279 @@
+
+@import url('reset.css');
+
+@font-face{
+	font-family: 'OldLondon';
+	src: url('../font/Olondon.otf') format('opentype');
+	font-weight: normal;
+	font-style: normal;
+}
+
+*{
+	font-family: latin, 'OldLondon';
+	color: #965418;
+	font-size: 1.4vw;
+}
+
+html, body{
+	height: 100%;
+	background: #5CA1E4;
+	background: -webkit-linear-gradient(top, #5CA1E4, #E2FFFF);
+	background: -moz-linear-gradient(top, #5CA1E4, #E2FFFF);
+	background: linear-gradient(to bottom, #5CA1E4, #E2FFFF);
+	scrollbar-color: #b6860b #e3c66c;
+	cursor: url(../img/icons/cursor.cur), auto;
+}
+
+a, area, label, input{
+	cursor: url(../img/icons/activeCursor.cur), auto;
+}
+
+body{
+  	overflow: hidden;
+}
+
+h3{
+	width: 100%;
+	font-size: 2.3vw;
+}
+
+.wrapper {
+	display: flex;
+	flex-direction: column;
+	min-height: 100%;
+}
+
+.main-nav{
+	margin: 0 auto 0 auto;
+}
+
+
+.flex-container{
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: flex-start;
+	align-items: stretch;
+	flex: 1 0 auto;
+}
+
+.scroll{
+	background: url(../img/Scroll.gif) no-repeat;
+	background-size: 100% 70%;
+	display: flex;
+	width: 72%;
+	margin: 0 auto 0 auto;
+}
+
+.content{
+	overflow-y: auto;
+	overflow-x: hidden;
+	opacity: 0;
+	height: 40%;
+	width: 100%;
+	margin: 7% 5% 0 6%;
+	display: flex;
+	flex-wrap: wrap;
+	align-content: flex-start;
+}
+
+.hidden-text{
+	opacity: 0; 
+	transition: 1s; 
+	animation: showText 4s 1; 
+	animation-fill-mode: forwards; 
+	animation-delay: 2s; 
+}
+
+.flex-box{
+	padding: 2px 2px 2px 2px;
+	margin: 5px 10px 10px 10px;
+	border-radius: 35%;
+}
+
+.flex-box:hover{
+	color: #753c09;
+	font-size: 1.6vw;
+}
+
+.create-box{
+	width: 100%;
+}
+
+.flex-box.create-box::after{
+
+	content: "";
+	background-image: url(../img/icons/Cookie.png);
+	background-size: cover;
+	width: 20px;
+	height: 20px;
+	display: inline-block;
+	vertical-align: text-top;
+	margin: 3px 5px 0px 5px;
+}
+
+.edit{
+	height: 14px;
+  	width: 14px;
+  	background-image: url(../img/icons/Edit.png);
+  	background-size: cover;
+  	background-color: transparent;
+  	display: inline-block;
+  	vertical-align: text-top;
+  	margin: 2px 0px 0px 0px;
+}
+
+.delete{
+	background-image: url(../img/icons/Delete.png);
+	background-size: cover;
+	background-color: transparent;
+	width: 14px;
+	height: 16px;
+	display: inline-block;
+	vertical-align: text-top;
+	margin: 8px 0px 0px 10px;
+}
+
+.no-decoration{
+	text-decoration: none;
+}
+
+.no-decoration:link{
+	color: #000000;
+}
+
+.no-decoration:visited{
+	color: #000000;
+}
+
+.no-decoration:hover{
+	color: #000000;
+}
+
+.no-decoration:active{
+	color: #000000;
+}
+
+.no-border{
+	border: 0;
+}
+
+input{
+	 background: transparent;
+	 border: 0px;
+	 height: 1.6vw; 
+}
+
+table{
+	display: block;
+	overflow-y: auto;
+	width: 48%;
+	height:70%;
+	border: 0;
+	float: left;
+}
+
+#menuTable{
+	display: block;
+	overflow-y: auto;
+	width: 99%;
+	height:70%;
+	border: 0;
+}
+
+tr, td{
+	width: 100%;
+}
+
+form{
+	width: 100%;
+	height: 100%;
+}
+
+.table-input-name{
+	width: 100%;
+}
+
+.input-quantity{
+	width: 4vw;
+}
+
+.input-description{
+	margin-left: 10px;
+	padding-left: 10px;
+	height: 70%;
+	width: 48%;
+	background: transparent;
+	border: 0px;
+	border-left: 10px double #c09c3f;
+}
+
+.add{
+	margin-left: 5px;
+	background-image: url(../img/icons/Cookie.png);
+	background-size: cover;
+	background-color: transparent;
+	width: 20px;
+	height: 20px;
+
+}
+
+.itemName{
+	width: 80%;
+}
+
+
+
+label {
+	display: inline-block;
+	position: relative;
+	padding-left: 25px;
+	margin-right: 15px;
+	font-size: 1.4vw;
+}
+
+input[type=checkbox] {
+	display: none;
+}
+label:before {
+	content: "";
+	display: inline-block;
+
+	width: 20px;
+	height: 20px;
+
+	margin-right: 10px;
+	position: absolute;
+	left: 0;
+	bottom: 1px;
+	background-color: #f0d788;
+	box-shadow: 0px 0px 6px 3px #c09c3f, inset 0px 0px 6px 1px #e1bd60;
+}
+
+
+input[type=checkbox]:checked + label:before {
+	content: "\2713";
+	text-shadow: 1px 1px 1px #c09c3f;
+	font-size: 1.4vw;
+	color: #c09c3f;
+	text-align: center;
+    line-height: 15px;
+}
+
+.ui-autocomplete{
+	background: #eccf88;
+	border: 1px solid #dbbd77;
+	width: 20%;
+}
+
+.footer{
+	flex: 0 0 auto;
+}
+
+@keyframes showText{
+	0%{
+		opacity:0;
+	}
+	100% {
+		opacity:1;
+	}
+}

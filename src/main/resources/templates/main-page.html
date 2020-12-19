@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Ingredient list</title>
+<link th:href="@{/css/main.css}" rel="stylesheet"/> 
+<link th:href="@{/css/menus.css}" rel="stylesheet"> 
+<script type="text/javascript" th:src="@{/javascript/jquery-1.6.4.min.js}"></script>
+<script type="text/javascript" th:src="@{/javascript/jquery.maphilight.js}"></script>
+<script type="text/javascript">
+    $(function() {
+        $('.map').maphilight({ stroke: false, fillColor: 'ad7a4b', fillOpacity: 0.1 });
+    });
+</script>
+<script type="text/javascript" th:src="@{/javascript/pageTransition.js}"></script>
+</head>
+<body>
+
+	<div class="wrapper">
+		<nav class="main-nav">
+
+	        <map name="navMap">
+	            <area href="/menufactory/ingredient-list" shape="poly" coords="192,39,10,39,1,26,0,11,7,1,190,0,184,9,184,23"/>
+	            <area href="/menufactory/recipe-list" shape="poly" coords="195,37,195,93,214,105,347,105,366,96,365,68,337,66,318,66,299,48,281,58,248,42,234,43"/> 
+	            <area href="/menufactory/menu-list" shape="poly" coords="500,72,523,74,552,56,566,49,610,49,622,43,647,42,674,40,676,91,660,106,510,106,499,92"/>
+	            <area href="/menufactory/support" shape="poly" coords="674,0,678,17,675,40,863,39,868.0000305175781,17,865.0000305175781,0"/> 
+	            <area href="/menufactory/" shape="poly" coords="195,0,188,11,189,25,197,33,212,28,216,36,232,35,248,38,284,56,294,41,308,44,325,61,378,67,385,54,392,68,465,68,471,60,490,67,525,66,558,51,575,46,605,45,617,37,653,37,663,30,676,28,677,14,667,0"/>   
+        	</map>
+
+	        <div>
+	        	<img th:src="@{/img/nav.png}" usemap="#navMap" class="map">
+	        </div>
+
+	    </nav>
+
+		<header>
+
+		</header>
+
+<main>
+	
+</main>
+
+<footer>
+			
+		</footer>
+
+	</div>	
+
+</body>
+</html>
