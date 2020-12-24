@@ -22,7 +22,7 @@ public class IngredientRestController {
 		
 	}
 	
-	
+	@CrossOrigin
 	@RequestMapping(value = "/ingredients-autocomplete")
 	public ResponseEntity<String> findIngredientsForAutocomplete(@RequestParam(value = "name") String ingredientName) {
 		

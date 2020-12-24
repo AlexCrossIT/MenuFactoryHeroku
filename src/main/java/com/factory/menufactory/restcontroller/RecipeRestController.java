@@ -22,7 +22,8 @@ public class RecipeRestController {
 		
 	}
 	
-	
+
+	@CrossOrigin
 	@RequestMapping("/recipes-autocomplete")
 	public ResponseEntity<String> findRecipesForAutocomplete(@RequestParam(name = "name") String recipeName) {
 			
