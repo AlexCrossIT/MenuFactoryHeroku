@@ -6,6 +6,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
 import com.factory.menufactory.other.Response;
 import com.factory.menufactory.service.IngredientService;
@@ -22,7 +23,7 @@ public class IngredientRestController {
 		
 	}
 	
-	
+	@CrossOrigin
 	@RequestMapping(value = "/ingredients-autocomplete")
 	public ResponseEntity<String> findIngredientsForAutocomplete(@RequestParam(value = "name") String ingredientName) {
 		
