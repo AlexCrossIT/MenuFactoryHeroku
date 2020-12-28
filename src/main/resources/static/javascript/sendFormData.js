@@ -43,7 +43,7 @@ window.onload = function(){
 				
 		let xhr = new XMLHttpRequest();
 				    
-	    let url = "http://localhost:8080/menufactory/recipe-edit";
+	    let url = "https://menufactory.herokuapp.com/recipe-edit";
 	    
 	    xhr.open("POST", url, true);
 	    
