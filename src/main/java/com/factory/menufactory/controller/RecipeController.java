@@ -94,7 +94,7 @@ public class RecipeController {
 				
 		recipeService.save(recipe);
 		
-		return new ResponseEntity<String>("/menufactory/recipe-list", HttpStatus.OK);
+		return new ResponseEntity<String>("/recipe-list", HttpStatus.OK);
 		
 	}
 	
