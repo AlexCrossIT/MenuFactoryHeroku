@@ -39,6 +39,7 @@ public class IngredientList {
 	
 	public IngredientList(Recipe recipe, Ingredient ingredient, int ingredientQuantity) {
 		
+		this.ingredientListId = recipe.getRecipeId();
 		this.recipe = recipe;
 		this.ingredient = ingredient;
 		this.ingredientQuantity = ingredientQuantity;
