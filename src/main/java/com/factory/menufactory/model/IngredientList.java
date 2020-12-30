@@ -18,8 +18,6 @@ import lombok.Data;
 public class IngredientList {
 	
 	@Id
-	@GeneratedValue(generator = "UUID")
-	@GenericGenerator(name="UUID", strategy = "org.hibernate.id.UUIDGenerator")
 	String ingredientListId;
 	
 	@ManyToOne
