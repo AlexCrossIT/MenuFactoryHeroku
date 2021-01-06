@@ -1,11 +1,7 @@
 package com.factory.menufactory.controller;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
 
-import org.json.JSONArray;
-import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,11 +12,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
-import com.factory.menufactory.model.Ingredient;
-import com.factory.menufactory.model.IngredientList;
 import com.factory.menufactory.model.Menu;
 import com.factory.menufactory.model.Recipe;
-import com.factory.menufactory.service.IngredientService;
 import com.factory.menufactory.service.MenuService;
 import com.factory.menufactory.service.RecipeService;
 
@@ -29,14 +22,12 @@ public class RecipeController {
 
 	private final MenuService menuService;
 	private final RecipeService recipeService;
-	private final IngredientService ingredientService;
 	
 	@Autowired
-	public RecipeController(MenuService menuService, RecipeService recipeService, IngredientService ingredientService) {
+	public RecipeController(MenuService menuService, RecipeService recipeService) {
 		
 		this.menuService = menuService;
 		this.recipeService = recipeService;
-		this.ingredientService = ingredientService;
 		
 	}
 	
@@ -68,37 +59,8 @@ public class RecipeController {
 	
 	@PostMapping("/recipe-edit")
 	public ResponseEntity<String> editRecipe(@RequestBody String jsonString) {
-		
-		JSONObject jsonData = new JSONObject(jsonString);
-					
-		JSONArray jsonArray = jsonData.getJSONArray("ingredients");
-		
-		List<IngredientList> ingredientList = new ArrayList<>();
-		
-		String recipeId = (String) jsonData.get("recipeId");
-		String recipeName = (String) jsonData.get("recipeName");
-		
-		if(recipeId.isEmpty()) {
-			recipeId = UUID.randomUUID().toString();
-		}
-		
-		Recipe recipe = new Recipe(recipeId, recipeName, ingredientList);
-		
-		for(int i = 0; i < jsonArray.length(); i++) {
-			
-			JSONObject jsonObject = jsonArray.getJSONObject(i);
-			
-			int ingredientQuantity = jsonObject.getInt("ingredientQuantity");
-			
-			Ingredient ingredient = ingredientService.findById(jsonObject.getString("ingredientId"));
-			
-			ingredient.setIngredientList(ingredientList);
-			
-			ingredientList.add(new IngredientList(recipe, ingredient, ingredientQuantity));
-			
-		}
-				
-		recipeService.save(recipe);
+						
+		recipeService.save(jsonString);
 		
 		return new ResponseEntity<String>("/recipe-list", HttpStatus.OK);
 		
