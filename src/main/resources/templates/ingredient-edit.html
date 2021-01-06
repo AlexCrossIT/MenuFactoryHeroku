@@ -1,16 +1,15 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-<meta charset="UTF-8">
-<title>Ingredient list</title>
-<link th:href="@{/css/main.css}" rel="stylesheet"/>
-<link rel="stylesheet" th:href="@{/css/ingredients.css}"> 
-<script type="text/javascript" th:src="@{/javascript/jquery-1.6.4.min.js}"></script>
-<script type="text/javascript" th:src="@{/javascript/jquery.maphilight.js}"></script>
-<script type="text/javascript" th:src="@{/javascript/pageTransition.js}"></script>
-<script type="text/javascript" th:src="@{/javascript/setMaphilight.js}"></script>
-<script type="text/javascript" th:src="@{/javascript/setHiddenTextClass.js}"></script>
-
+	<meta charset="UTF-8">
+	<title>Ingredient edit</title>
+	<link rel="stylesheet" th:href="@{/css/main.css}"/>
+	<link rel="stylesheet" th:href="@{/css/ingredients.css}"> 
+	<script type="text/javascript" th:src="@{/javascript/jquery-1.6.4.min.js}"></script>
+	<script type="text/javascript" th:src="@{/javascript/jquery.maphilight.js}"></script>
+	<script type="text/javascript" th:src="@{/javascript/pageTransition.js}"></script>
+	<script type="text/javascript" th:src="@{/javascript/setMaphilight.js}"></script>
+	<script type="text/javascript" th:src="@{/javascript/setHiddenTextClass.js}"></script>
 </head>
 <body>
 
@@ -42,18 +41,17 @@
 
 				<section class="content">
 				
+				 	<form action="#" th:action="@{/ingredient-edit}" th:object="${ingredient}" method="POST">
+				 		
+				 		<input hidden="" readonly type="text" th:field="*{ingredientId}" id="ingredientId" placeholder="Ingredient ID">
+				 		
+				 		<h3> Ingredient - <input type="text" th:field="*{ingredientName}" id="ingredientName" placeholder="Ingredient name..."> </h3>
 
-		 	<form action="#" th:action="@{/ingredient-edit}" th:object="${ingredient}" method="POST">
-		 		
-		 		<input hidden="" readonly type="text" th:field="*{ingredientId}" id="ingredientId" placeholder="Ingredient ID">
-		 		
-		 		<h3> Ingredient - <input type="text" th:field="*{ingredientName}" id="ingredientName" placeholder="Ingredient name..."> </h3>
+				 		
+				 		<input type="submit" value="Save">
+				 
 
-		 		
-		 		<input type="submit" value="Save">
-		 
-
-		 	</form>
+				 	</form>
 
 
 			    </section>

@@ -1,35 +1,20 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-<meta charset="UTF-8">
-<title>Menu</title>
-<link th:href="@{/css/main.css}" rel="stylesheet"/>
-
+	<meta charset="UTF-8">
+	<title>Menu</title>
+	<link rel="stylesheet" th:href="@{/css/main.css}"/>
+	<link rel="stylesheet" th:href="@{/css/menus.css}">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
-	<script type="text/javascript" th:src="@{/javascript/dynamicTable.js}"></script>
-	<link rel="stylesheet" th:href="@{/css/menus.css}"> 
+	<script type="text/javascript" th:src="@{/javascript/dynamicTable.js}"></script> 
 	<script type="text/javascript" th:src="@{/javascript/pageTransition.js}"></script>
-	
-	<!-- 
-	<script type="text/javascript" th:src="@{/javascript/jquery-1.6.4.min.js}"></script>
-	<script type="text/javascript" th:src="@{/javascript/jquery.maphilight.js}"></script>
-	<script type="text/javascript">
-	    $(function() {
-	        $('.map').maphilight({ stroke: false, fillColor: 'ad7a4b', fillOpacity: 0.1 });
-	    });
-	</script>
-	 -->
-	<script>
-	$(document).ready( function(){
-		$('.content').addClass('hidden-text');
-	});
-</script>
-	
+	<script type="text/javascript" th:src="@{/javascript/setHiddenTextClass.js}"></script>	
 </head>
 <body>
 
 	<div class="wrapper">
+		
 		<nav class="main-nav">
 
 	        <map name="navMap">
@@ -52,61 +37,61 @@
 			    		    
 		 <main class="flex-container">
 		 	
-<section class="scroll">
+			<section class="scroll">
 
 				<section class="content">
 					
-				<form action="#" th:action="@{/menu-edit}" th:object="${menu}" method="POST" name="menuForm">
-				 
-				 	<input hidden readonly type="text" th:field="*{menuId}" id="menuId" placeholder="menu ID">
-				 	
-					<h3>
-						Menu - <input type="text" th:field="*{menuName}" id="menuName" placeholder="Menu name...">
-						<a th:href="@{/shopping-list/{menuId}(menuId=${menu.menuId})}" class="no-decoration">Shopping list</a> 
-					</h3>
+					<form action="#" th:action="@{/menu-edit}" th:object="${menu}" method="POST" name="menuForm">
+					 
+					 	<input hidden readonly type="text" th:field="*{menuId}" id="menuId" placeholder="menu ID">
+					 	
+						<h3>
+							Menu - <input type="text" th:field="*{menuName}" id="menuName" placeholder="Menu name...">
+							<a th:href="@{/shopping-list/{menuId}(menuId=${menu.menuId})}" class="no-decoration">Shopping list</a> 
+						</h3>
 
-				    <table width="400" border="0" cellspacing="0" cellpadding="5" id="menuTable">
-				        
-				        <thead>
-				        </thead>
-				       
-				        <tbody id="dynamic">
-				            	
-				            <th:block th:unless="*{recipes}">	
-					            <tr id="tableRow">               
+					    <table width="400" border="0" cellspacing="0" cellpadding="5" id="menuTable">
+					        
+					        <thead>
+					        </thead>
+					       
+					        <tbody id="dynamic">
+					            	
+					            <th:block th:unless="*{recipes}">	
+						            <tr id="tableRow">               
+						                <td>
+						                	<input hidden readonly type="text" class="table-input-id" placeholder="ID..." name="id" id='id-recipe'>
+						                    <input type="text" placeholder="Recipe..." class="table-input-name" name="name" id='recipe' maxlength="70">
+						                </td>            
+						                <td class="no-border">
+						                	<button type="button" class="del delete no-border"></button>
+						                </td>
+						            </tr>
+					            </th:block>
+					            	            
+					            <tr id="tableRow" th:each="recipeRow, state: *{recipes}">               
 					                <td>
-					                	<input hidden readonly type="text" class="table-input-id" placeholder="ID..." name="id" id='id-recipe'>
-					                    <input type="text" placeholder="Recipe..." class="table-input-name" name="name" id='recipe' maxlength="70">
+					                	<input hidden readonly type="text" class="table-input-id"  placeholder="ID..." name="id" th:id="${'id-recipe' + state.index}" th:field="*{recipes[__${state.index}__].recipeId}">
+					                    <input type="text" placeholder="Recipe..." class="table-input-name" name="name" th:id="${'recipe' + state.index}" th:field="*{recipes[__${state.index}__].recipeName}" maxlength="70">
 					                </td>            
 					                <td class="no-border">
 					                	<button type="button" class="del delete no-border"></button>
 					                </td>
 					            </tr>
-				            </th:block>
-				            	            
-				            <tr id="tableRow" th:each="recipeRow, state: *{recipes}">               
-				                <td>
-				                	<input hidden readonly type="text" class="table-input-id"  placeholder="ID..." name="id" th:id="${'id-recipe' + state.index}" th:field="*{recipes[__${state.index}__].recipeId}">
-				                    <input type="text" placeholder="Recipe..." class="table-input-name" name="name" th:id="${'recipe' + state.index}" th:field="*{recipes[__${state.index}__].recipeName}" maxlength="70">
-				                </td>            
-				                <td class="no-border">
-				                	<button type="button" class="del delete no-border"></button>
-				                </td>
-				            </tr>
 
-				            <tr>
-				            	<td>
-									<button type="button" class="add no-border"></button>
-								</td>
-				            </tr>
+					            <tr>
+					            	<td>
+										<button type="button" class="add no-border"></button>
+									</td>
+					            </tr>
 
-				        </tbody>
+					        </tbody>
 
-				    </table>
+					    </table>
 
-				 	<input type="submit" class="save" value="Save">
+					 	<input type="submit" class="save" value="Save">
 
-				</form>
+					</form>
 
 			    </section>
 			    	
@@ -122,6 +107,7 @@
 		    new DynamicTable(document.getElementById("dynamic"), 
 		    	"http://menufactory.herokuapp.com/recipes-autocomplete");
 		</script>
+	
 	</div>
 
 </body>

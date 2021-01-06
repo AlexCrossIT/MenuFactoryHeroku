@@ -1,39 +1,16 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-<meta charset="UTF-8">
-<title>Recipe</title>
-<link th:href="@{/css/main.css}" rel="stylesheet"/>
-
+	<meta charset="UTF-8">
+	<title>Recipe</title>
+	<link rel="stylesheet" th:href="@{/css/main.css}"/>
+	<link rel="stylesheet" th:href="@{/css/recipes.css}"> 
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
-
     <script type="text/javascript" th:src="@{/javascript/sendFormData.js}"></script>
 	<script type="text/javascript" th:src="@{/javascript/dynamicTable.js}"></script>
 	<script type="text/javascript" th:src="@{/javascript/pageTransition.js}"></script>
-
-
-	<link rel="stylesheet" th:href="@{/css/recipes.css}"> 
-	<!-- 
-	
-	<script type="text/javascript" th:src="@{/javascript/jquery-1.6.4.min.js}"></script>
-	<script type="text/javascript" th:src="@{/javascript/jquery.maphilight.js}"></script>  
-	<script type="text/javascript"> 
-	    $(function() {
-	        $('.map').maphilight({ stroke: false, fillColor: 'ad7a4b', fillOpacity: 0.1 });
-	    });
-	</script> 
-	
-	-->
-
-
-
-	<script>
-	$(document).ready( function(){
-		$('.content').addClass('hidden-text');
-	});
-</script>
-	
+	<script type="text/javascript" th:src="@{/javascript/setHiddenTextClass.js}"></script>	
 </head>
 <body>
 
@@ -59,9 +36,9 @@
 
 		</header>
 			    		    
-		 <main class="flex-container">
+		<main class="flex-container">
 		 	
-		<section class="scroll">
+			<section class="scroll">
 
 				<section class="content">
 					

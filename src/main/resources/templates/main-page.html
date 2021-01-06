@@ -1,22 +1,19 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-<meta charset="UTF-8">
-<title>Ingredient list</title>
-<link th:href="@{/css/main.css}" rel="stylesheet"/> 
-<link th:href="@{/css/menus.css}" rel="stylesheet"> 
-<script type="text/javascript" th:src="@{/javascript/jquery-1.6.4.min.js}"></script>
-<script type="text/javascript" th:src="@{/javascript/jquery.maphilight.js}"></script>
-<script type="text/javascript">
-    $(function() {
-        $('.map').maphilight({ stroke: false, fillColor: 'ad7a4b', fillOpacity: 0.1 });
-    });
-</script>
-<script type="text/javascript" th:src="@{/javascript/pageTransition.js}"></script>
+	<meta charset="UTF-8">
+	<title>Main page</title>
+	<link rel="stylesheet" th:href="@{/css/main.css}"/> 
+	<link rel="stylesheet" th:href="@{/css/menus.css}"/> 
+	<script type="text/javascript" th:src="@{/javascript/jquery-1.6.4.min.js}"></script>
+	<script type="text/javascript" th:src="@{/javascript/jquery.maphilight.js}"></script>
+	<script type="text/javascript" th:src="@{/javascript/setMaphilight.js}"></script>
+	<script type="text/javascript" th:src="@{/javascript/pageTransition.js}"></script>
 </head>
 <body>
 
 	<div class="wrapper">
+		
 		<nav class="main-nav">
 
 	        <map name="navMap">
@@ -37,11 +34,11 @@
 
 		</header>
 
-<main>
-	
-</main>
+		<main>
+			
+		</main>
 
-<footer>
+		<footer>
 			
 		</footer>
 

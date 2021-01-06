@@ -2,28 +2,17 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
-<title>Shopping list</title>
-<link th:href="@{/css/main.css}" rel="stylesheet"/>
-
+	<title>Shopping list</title>
+	<link rel="stylesheet" th:href="@{/css/main.css}"/>
+	<link rel="stylesheet" th:href="@{/css/shoppingList.css}"> 
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js}"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js}"></script>
     <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css}">
-
-	<link rel="stylesheet" th:href="@{/css/shoppingList.css}"> 
 	<script type="text/javascript" th:src="@{/javascript/jquery-1.6.4.min.js}"></script>
 	<script type="text/javascript" th:src="@{/javascript/jquery.maphilight.js}"></script>
-	<script type="text/javascript">
-	    $(function() {
-	        $('.map').maphilight({ stroke: false, fillColor: 'ad7a4b', fillOpacity: 0.1 });
-	    });
-	</script>
-	<script>
-	$(document).ready( function(){
-		$('.content').addClass('hidden-text');
-	});
-</script>
-<script type="text/javascript" th:src="@{/javascript/pageTransition.js}"></script>
-	
+	<script type="text/javascript" th:src="@{/javascript/setMaphilight.js}"></script>
+	<script type="text/javascript" th:src="@{/javascript/setHiddenTextClass.js}"></script>
+	<script type="text/javascript" th:src="@{/javascript/pageTransition.js}"></script>	
 </head>
 <body>
 
@@ -96,10 +85,6 @@
 		<footer>
 			
 		</footer>
-
-		<script>
-		    new DynamicTable(document.getElementById("dynamic"), "http://localhost:8080/menufactory/ingredients-autocomplete");
-		</script>
 	
 	</div>
 
