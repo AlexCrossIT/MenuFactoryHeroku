@@ -4,13 +4,7 @@
 	<meta charset="UTF-8">
 	<title>Recipe</title>
 	<link rel="stylesheet" th:href="@{/css/main.css}"/>
-	<link rel="stylesheet" th:href="@{/css/recipes.css}"> 
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
-    <script type="text/javascript" th:src="@{/javascript/sendFormData.js}"></script>
-	<script type="text/javascript" th:src="@{/javascript/dynamicTable.js}"></script>
-	<script type="text/javascript" th:src="@{/javascript/pageTransition.js}"></script>
-	<script type="text/javascript" th:src="@{/javascript/setHiddenTextClass.js}"></script>	
+	<link rel="stylesheet" th:href="@{/css/recipes.css}"> 	
 </head>
 <body>
 
@@ -108,16 +102,24 @@
 
 		 </main>
 
-	<script>
-	    new DynamicTable(document.getElementById("dynamic"),
-	     "http://menufactory.herokuapp.com/ingredients-autocomplete");
-	</script>
 
 		<footer>
 			
 		</footer>
 
 </div>
+
+	<script defer src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script defer type="text/javascript" th:src="@{/javascript/pageTransition.js}"></script>
+	<script defer type="text/javascript" th:src="@{/javascript/setHiddenTextClass.js}"></script>
+    <script defer src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    <script defer type="text/javascript" th:src="@{/javascript/sendFormData.js}"></script>
+	<script defer type="text/javascript" th:src="@{/javascript/dynamicTable.js}"></script>
+
+	<script>
+	    new DynamicTable(document.getElementById("dynamic"),
+	     "http://menufactory.herokuapp.com/ingredients-autocomplete");
+	</script>
 
 </body>
 </html>
