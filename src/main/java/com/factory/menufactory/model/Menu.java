@@ -11,6 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.PreRemove;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.Fetch;
@@ -33,10 +34,36 @@ public class Menu {
 	@Getter @Setter String menuName;
 	
 	@Fetch(value = FetchMode.SELECT)
-	@ManyToMany(cascade = CascadeType.ALL)
+	@ManyToMany
 	@JoinTable(name = "recipe_lists", joinColumns = @JoinColumn(name = "menu_id"), 
 									  inverseJoinColumns = @JoinColumn(name = "recipe_id"))
 	@Getter @Setter private List<Recipe> recipes;
 	
+	@Override
+    public boolean equals(Object obj) {
+	    
+		if (obj == this) {
+	        return true;
+	    }
+	    if (obj == null || obj.getClass() != this.getClass()) {
+	        return false;
+	    }
+	
+	    Menu menu = (Menu) obj;
+	    return menuId.equals(menu.getMenuId()) && menuName.equals(menu.getMenuName())
+	    		&& recipes.equals(menu.getRecipes());
+	    
+    }
+	
+	@Override
+	public int hashCode() {
+		
+		int result = 17;
+		
+		result = 31 * result + menuId.hashCode() + menuName.hashCode() + recipes.hashCode();
+		
+		return result;
+		
+	}
 	
 }

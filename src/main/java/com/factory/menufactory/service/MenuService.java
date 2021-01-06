@@ -49,6 +49,12 @@ public class MenuService {
 		
 	}
 	
+	public void delete(Menu menu) {
+		
+		menuRepository.delete(menu);
+		
+	}
+	
 	public List<ShoppingList> getShoppingListByMenuId(String menuId) {
 		
 		List<ShoppingList> shoppingList = new ArrayList<>();

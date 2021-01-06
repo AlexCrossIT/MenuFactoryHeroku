@@ -1,35 +1,41 @@
 package com.factory.menufactory.model;
 
+import java.io.Serializable;
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.IdClass;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import org.hibernate.annotations.GenericGenerator;
 
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
-@Data
 @Entity
 @Table(name="ingredient_lists")
-public class IngredientList {
+@IdClass(IngredientListPK.class)
+public class IngredientList{
 	
 	@Id
-	String ingredientListId;
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "recipe_id")
+	@Getter @Setter Recipe recipe;
 	
-	@ManyToOne
-	@JoinColumn(name = "recipe_id", referencedColumnName = "recipeId")
-	Recipe recipe;
-	
+	@Id
 	@ManyToOne
 	@JoinColumn(name = "ingredient_id")
-	Ingredient ingredient;
+	@Getter @Setter Ingredient ingredient;
 	
 	@Column(name = "ingredient_quantity")
-	int ingredientQuantity;
+	@Getter @Setter int ingredientQuantity;
 	
 	public IngredientList() {
 		
@@ -37,10 +43,37 @@ public class IngredientList {
 	
 	public IngredientList(Recipe recipe, Ingredient ingredient, int ingredientQuantity) {
 		
-		this.ingredientListId = recipe.getRecipeId();
 		this.recipe = recipe;
 		this.ingredient = ingredient;
 		this.ingredientQuantity = ingredientQuantity;
+		
+	}
+	
+	@Override
+    public boolean equals(Object obj) {
+	    
+		if (obj == this) {
+	        return true;
+	    }
+	    if (obj == null || obj.getClass() != this.getClass()) {
+	        return false;
+	    }
+	
+	    IngredientList ingredientList = (IngredientList) obj;
+	    return recipe.equals(ingredientList.getRecipe()) && ingredient.equals(ingredientList.getIngredient()) 
+	    		&& ingredientQuantity == ingredientList.getIngredientQuantity();
+	    
+    }
+	
+	@Override
+	public int hashCode() {
+		
+		int result = 17;
+		
+		result = 31 * result + (recipe == null ? 0: recipe.hashCode()) 
+					+ (ingredient == null ? 0: ingredient.hashCode()) + ingredientQuantity;
+		
+		return result;
 		
 	}
 	

@@ -8,13 +8,18 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.PreRemove;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -31,7 +36,7 @@ public class Recipe {
 	@Column(name = "recipe_name")
 	@Getter @Setter private String recipeName;
 	
-	@OneToMany(mappedBy = "recipe", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@OneToMany(mappedBy = "recipe", cascade = CascadeType.ALL, orphanRemoval = true)
 	@Getter @Setter List<IngredientList> ingredientList;
 	
 	@Fetch(value = FetchMode.SELECT)
@@ -47,6 +52,40 @@ public class Recipe {
 		this.recipeId = recipeId;
 		this.recipeName = recipeName;
 		this.ingredientList = ingredientList;
+		
+	}
+	
+	@PreRemove
+	public void removeMenus() {
+		
+		menus.forEach(menu -> menu.getRecipes().remove(this));
+		
+	}
+	
+	@Override
+    public boolean equals(Object obj) {
+	    
+		if (obj == this) {
+	        return true;
+	    }
+	    if (obj == null || obj.getClass() != this.getClass()) {
+	        return false;
+	    }
+	
+	    Recipe recipe = (Recipe) obj;
+	    return recipeId.equals(recipe.getRecipeId()) && recipeName.equals(recipe.getRecipeName())
+	    		&& ingredientList.equals(recipe.getIngredientList());
+	    
+    }
+	
+	@Override
+	public int hashCode() {
+		
+		int result = 17;
+		
+		result = 31 * result + recipeId.hashCode() + recipeName.hashCode() + ingredientList.hashCode();
+		
+		return result;
 		
 	}
 	

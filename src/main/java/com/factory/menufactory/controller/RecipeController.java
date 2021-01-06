@@ -18,19 +18,23 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 import com.factory.menufactory.model.Ingredient;
 import com.factory.menufactory.model.IngredientList;
+import com.factory.menufactory.model.Menu;
 import com.factory.menufactory.model.Recipe;
 import com.factory.menufactory.service.IngredientService;
+import com.factory.menufactory.service.MenuService;
 import com.factory.menufactory.service.RecipeService;
 
 @Controller
 public class RecipeController {
 
+	private final MenuService menuService;
 	private final RecipeService recipeService;
 	private final IngredientService ingredientService;
 	
 	@Autowired
-	public RecipeController(RecipeService recipeService, IngredientService ingredientService) {
+	public RecipeController(MenuService menuService, RecipeService recipeService, IngredientService ingredientService) {
 		
+		this.menuService = menuService;
 		this.recipeService = recipeService;
 		this.ingredientService = ingredientService;
 		
@@ -88,6 +92,8 @@ public class RecipeController {
 			
 			Ingredient ingredient = ingredientService.findById(jsonObject.getString("ingredientId"));
 			
+			ingredient.setIngredientList(ingredientList);
+			
 			ingredientList.add(new IngredientList(recipe, ingredient, ingredientQuantity));
 			
 		}
@@ -101,7 +107,17 @@ public class RecipeController {
 	@GetMapping("/recipe-delete/{recipeId}")
 	public String delete(@PathVariable("recipeId") String recipeId) {
 	
-		recipeService.deleteById(recipeId);
+		Recipe recipe = recipeService.findById(recipeId);
+		
+		List<Menu> menuList = recipe.getMenus();
+		
+		recipeService.delete(recipe);
+		
+		for (Menu menu : menuList) {
+			if(menu.getRecipes().size() < 2) {
+				menuService.delete(menu);
+			}
+		}
 		
 		return "redirect:/recipe-list";
 		

@@ -57,5 +57,10 @@ public class RecipeService {
 		
 	}
 	
+	public void delete(Recipe recipe) {
+		
+		recipeRepository.delete(recipe);
+		
+	}
 	
 }
