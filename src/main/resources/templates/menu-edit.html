@@ -97,11 +97,6 @@
 		<footer>
 			
 		</footer>
-
-		<script>
-		    new DynamicTable(document.getElementById("dynamic"), 
-		    	"http://menufactory.herokuapp.com/recipes-autocomplete");
-		</script>
 	
 	</div>
 
@@ -109,7 +104,12 @@
     <script defer type="text/javascript" th:src="@{/javascript/pageTransition.js}"></script>
     <script defer type="text/javascript" th:src="@{/javascript/setHiddenTextClass.js}"></script>
     <script defer src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
-	<script defer type="text/javascript" th:src="@{/javascript/dynamicTable.js}"></script> 
+	<script type="text/javascript" th:src="@{/javascript/dynamicTable.js}"></script> 
+
+	<script>
+	    new DynamicTable(document.getElementById("dynamic"), 
+	    	"http://menufactory.herokuapp.com/recipes-autocomplete");
+	</script>
 
 </body>
 </html>
