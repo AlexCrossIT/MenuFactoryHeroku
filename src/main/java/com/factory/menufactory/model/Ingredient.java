@@ -28,7 +28,7 @@ public class Ingredient {
 	@Getter @Setter private String ingredientName;
 	
 	@OneToMany(mappedBy = "ingredient")
-	@Getter @Setter List<IngredientList> ingredientList;
+	@Getter @Setter private List<IngredientList> ingredientList;
 	
 	@Override
     public boolean equals(Object obj) {

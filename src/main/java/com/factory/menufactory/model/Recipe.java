@@ -33,11 +33,11 @@ public class Recipe {
 	@Getter @Setter private String recipeName;
 	
 	@OneToMany(mappedBy = "recipe", cascade = CascadeType.ALL, orphanRemoval = true)
-	@Getter @Setter List<IngredientList> ingredientList;
+	@Getter @Setter private List<IngredientList> ingredientList;
 	
 	@Fetch(value = FetchMode.SELECT)
 	@ManyToMany(fetch = FetchType.LAZY, mappedBy = "recipes")
-	@Getter @Setter List<Menu> menus;
+	@Getter @Setter private List<Menu> menus;
 	
 	public Recipe() {
 		
