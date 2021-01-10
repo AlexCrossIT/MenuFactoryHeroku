@@ -29,7 +29,7 @@ public class Menu {
 	@Getter @Setter private String menuId;
 	
 	@Column(name = "menu_name")
-	@Getter @Setter String menuName;
+	@Getter @Setter private String menuName;
 	
 	@Fetch(value = FetchMode.SELECT)
 	@ManyToMany

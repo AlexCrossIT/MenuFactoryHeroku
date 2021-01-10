@@ -22,15 +22,15 @@ public class IngredientList{
 	@Id
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "recipe_id")
-	@Getter @Setter Recipe recipe;
+	@Getter @Setter private Recipe recipe;
 	
 	@Id
 	@ManyToOne
 	@JoinColumn(name = "ingredient_id")
-	@Getter @Setter Ingredient ingredient;
+	@Getter @Setter private Ingredient ingredient;
 	
 	@Column(name = "ingredient_quantity")
-	@Getter @Setter int ingredientQuantity;
+	@Getter @Setter private int ingredientQuantity;
 	
 	public IngredientList() {
 		
