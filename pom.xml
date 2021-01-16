@@ -11,6 +11,7 @@
 	<groupId>com.example</groupId>
 	<artifactId>demo</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
+	<packaging>war</packaging>
 	<name>demo</name>
 	<description>Demo project for Spring Boot</description>
 
@@ -60,6 +61,7 @@
 	</dependencies>
 
 	<build>
+	<finalName>${project.artifactId}##${project.version}</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
@@ -74,6 +76,18 @@
 					</excludes>
 				</configuration>
 			</plugin>
+			<plugin>
+		        <groupId>com.heroku.sdk</groupId>
+		        <artifactId>heroku-maven-plugin</artifactId>
+		        <version>3.0.3</version>
+		        <configuration>
+				  <appName>menufactory</appName>
+				  <processTypes>
+				     <web>java -war -Dserver.port=$PORT target/${project.build.finalName}.war</web>
+				  </processTypes>
+				</configuration>
+						        
+		      </plugin>
 		</plugins>
 	</build>
 
