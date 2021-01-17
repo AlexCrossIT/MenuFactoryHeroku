@@ -7,6 +7,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.factory.menufactory.model.Ingredient;
 
@@ -18,6 +19,7 @@ public class IngredientRepositoryIngtegrationTest {
 	private IngredientRepository ingredientRepository;
 	
 	@Test
+	@Transactional
 	public void shouldCreateAndDeleteNewIngredient() throws Exception{
 	
 		Ingredient ingredient = new Ingredient();
