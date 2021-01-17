@@ -57,7 +57,7 @@
 		    <groupId>org.json</groupId>
 		    <artifactId>json</artifactId>
 		    <version>20201115</version>
-		</dependency>
+		</dependency>				
 	</dependencies>
 
 	<build>
@@ -83,7 +83,7 @@
 		        <configuration>
 				  <appName>menufactory</appName>
 				  <processTypes>
-				     <web>java -war -Dserver.port=$PORT target/${project.build.finalName}.war</web>
+				     <web>java -Dserver.port=$PORT -jar target/demo##0.0.1-SNAPSHOT.war</web>
 				  </processTypes>
 				</configuration>
 						        
