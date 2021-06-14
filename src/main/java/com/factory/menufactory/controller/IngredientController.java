@@ -2,7 +2,6 @@ package com.factory.menufactory.controller;
 
 import java.util.List;
 
-import org.springframework.amqp.core.AmqpTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,13 +16,11 @@ import com.factory.menufactory.service.IngredientService;
 public class IngredientController {
 	
 	private final IngredientService ingredientService;
-	private final AmqpTemplate amqpTemplate;
 	
 	@Autowired
-	public IngredientController(IngredientService ingredientService, AmqpTemplate amqpTemplate) {
+	public IngredientController(IngredientService ingredientService) {
 		
 		this.ingredientService = ingredientService;
-		this.amqpTemplate = amqpTemplate;
 		
 	}
 	
@@ -59,7 +56,7 @@ public class IngredientController {
 	@PostMapping("/ingredient-edit")
 	public String createIngredient(Ingredient ingredient) {
 		
-		amqpTemplate.convertAndSend(ingredient);
+		ingredientService.save(ingredient);
 		
 		return "redirect:/ingredient-list";
 		
